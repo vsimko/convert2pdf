@@ -3,6 +3,7 @@ A useful script for scientific writing that converts multiple formats to PDF.
 
 - converts all supported formats into PDF when modification time changes
 - output PDFs are automatically cropped after
+- tested on **Linux** (Mint, Ubuntu, Debian, CentOS)
 
 ## How to use
 - Assuming you are using LaTeX for writing your paper.
