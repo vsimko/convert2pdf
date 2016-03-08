@@ -10,7 +10,7 @@ A useful script for scientific writing that converts multiple formats to PDF.
 - Keep all your images in a subfolder: `mkdir images`
 - Download the [convert2pdf.sh](convert2pdf.sh) script and make it executable:
   - `cd images`
-  - `$ curl -o convert2pdf.sh https://raw.githubusercontent.com/vsimko/convert2pdf/master/convert2pdf.sh`
+  - `$ curl https://raw.githubusercontent.com/vsimko/convert2pdf/master/convert2pdf.sh | sed 's/\r//' > convert2pdf.sh`
   - `chmod +x convert2pdf.sh`
 - Run the script whenever needed, only modified files will be regenerated
 
