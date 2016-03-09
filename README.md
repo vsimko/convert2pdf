@@ -1,8 +1,8 @@
-# convert2pdf
+# figconv
 A useful script for scientific writing that converts multiple formats to PDF.
 
 - converts all supported formats into PDF when modification time changes
-- output PDFs are automatically cropped after
+- output PDFs are automatically cropped
 - tested on **Linux** (Mint, Ubuntu, Debian, CentOS)
 
 ## How to use
@@ -13,6 +13,10 @@ A useful script for scientific writing that converts multiple formats to PDF.
   - `$ curl -o convert2pdf.sh https://raw.githubusercontent.com/vsimko/convert2pdf/master/convert2pdf.sh`
   - `chmod +x convert2pdf.sh`
 - Run the script whenever needed, only modified files will be regenerated
+
+## Supported output formats
+- PDF (default and also used for intermediate conversion to other formats)
+- PNG (requires Ghostscript `gs`)
 
 ## Supported input formats
 
@@ -35,9 +39,9 @@ A useful script for scientific writing that converts multiple formats to PDF.
 ## Dependencies
 - `pdfcrop`
 - `pdfseparate`
-- `resize` (optional)
-- `unoconv` (optional)
-- `inkscape` (optional)
-- `dia` (optional)
-- `Rscript` (optional)
-- `gs` (deprecated)
+- `resize`
+- `unoconv`
+- `inkscape`
+- `dia`
+- `Rscript`
+- `gs`
