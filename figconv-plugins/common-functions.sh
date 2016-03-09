@@ -11,6 +11,18 @@ function synchronize_mtime() {
 }
 
 function get_all_extensions() {
-  echo $(echo $INPUT_EXT $OUTPUT_EXT | tr $XS "\n" | sort -u)
+  echo -e "$SUPPORTED_INPUT_EXT\n$SUPPORTED_OUTPUT_EXT"
 }
 
+function get_input_extensions() {
+  echo "$SUPPORTED_INPUT_EXT"
+}
+
+function get_output_extensions() {
+  echo "$SUPPORTED_OUTPUT_EXT"
+}
+
+function find_all_input_files() {
+  FINDCMD="find . -iname '' "$(get_input_extensions | sed 's/^/-or -iname *./')
+  `echo $FINDCMD` | sort
+}

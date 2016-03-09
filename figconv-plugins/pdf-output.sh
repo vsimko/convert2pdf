@@ -1,3 +1,5 @@
+add_output_ext pdf
+
 function convert_pdf_to_pdf() {
   cp "$1" "$2"
 }
