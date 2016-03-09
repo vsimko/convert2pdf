@@ -6,7 +6,7 @@ OUTPUT_EXT="pdf"
 CHECK_FAILED=1
 TMPFILE=".pdfcrop"
 XS=":"
-PLUGIN_DIR=".figconv-plugins"
+PLUGIN_DIR="figconv-plugins"
 
 function add_input_ext() {
   EXT="$@"
