@@ -1,7 +1,15 @@
+# Support for PDF format.
+# PDF is used as an output and also as an intermediate format.
+# Therefore, this plugin is mandatory.
+
+# registers output extension and callback for system check
 add_output_ext pdf
 
 function convert_pdf_to_pdf() {
-  cp "$1" "$2"
+  # copy only if the files differ
+  [ "$1" -ef "$2" ] || {
+    cp "$1" "$2"
+  }
 }
 
 function check_pdf() {
@@ -20,11 +28,14 @@ function check_pdf() {
 	}
 }
 
-# Removes redundant borders from PDF files
-# $1 = PDF filename
+# Removes redundant borders from PDF files.
+# Parameters:
+#   $1 = PDF filename
 function crop_pdf_file() {
+
 	# How many pages are inside the PDF file
 	NUMPAGES=$(pdfinfo "$1" | grep ^Pages: | sed 's/[^0-9]//g')
+
 	if [ "$NUMPAGES" -gt 1 ]
 	then
 		# There are 2 or more pages, we need to split the PDF
@@ -53,6 +64,5 @@ function crop_pdf_file() {
 		mv "$TMPFILE" "$FILENAME"
 		echo "done"
 	done
-	echo
 }
 
