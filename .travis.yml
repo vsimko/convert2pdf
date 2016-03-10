@@ -1,5 +1,13 @@
 language: bash
 
+addons:
+  apt:
+    packages:
+    - dia
+    - inkscape
+    - r-base-core
+    - unoconv
+
 script:
     - bash tests/run-tests.sh
 
