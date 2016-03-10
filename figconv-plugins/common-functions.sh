@@ -1,13 +1,14 @@
+
+NCOL=`stty size --file=/dev/stdin | cut -d" " -f2`
+
 function write_separator() {
-	# prepares the separator
-	eval `resize`
-	echo `seq 1 $COLUMNS | sed 's/^.*//' | tr '\n' '-'`
+  echo `seq 1 $NCOL | sed 's/^.*//' | tr '\n' '-'`
 }
 
 # $1 = mtime source
 # $2 = mtime desctination
 function synchronize_mtime() {
-	touch -r "$1" "$2"
+  touch -r "$1" "$2"
 }
 
 function get_all_extensions() {
