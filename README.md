@@ -1,5 +1,6 @@
 # figconv
 A useful script for scientific writing that converts multiple formats to PDF.
+[![Build Status](https://travis-ci.org/vsimko/figconv.svg?branch=master)](https://travis-ci.org/vsimko/figconv)
 
 - converts all supported formats into PDF when modification time changes
 - output PDFs are automatically cropped
