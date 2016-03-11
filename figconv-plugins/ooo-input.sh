@@ -38,4 +38,3 @@ function check_odt() {
 function check_ods() {
   check_odg
 }
-

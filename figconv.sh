@@ -45,12 +45,16 @@ do
   then
 
     # convert input format to output format through PDF format
-    convert_${SUFFIX}_to_pdf "$INPUTNAME" "$PDFNAME"
-    crop_pdf_file "$PDFNAME"
-    convert_pdf_to_${OUTPUT_EXT} "$PDFNAME" "$OUTNAME"
+    if convert_${SUFFIX}_to_pdf "$INPUTNAME" "$PDFNAME"
+    then
+      crop_pdf_file "$PDFNAME"
+      convert_pdf_to_${OUTPUT_EXT} "$PDFNAME" "$OUTNAME"
 
-    # The original file and the created PDF files will have the same modification time
-    synchronize_mtime "$INPUTNAME" "$OUTNAME"
+      # The original file and the created PDF files will have the same modification time
+      synchronize_mtime "$INPUTNAME" "$OUTNAME"
+    else
+      echo "Conversion failed."
+    fi
 
   else
     echo "No conversion needed for: $INPUTNAME"
