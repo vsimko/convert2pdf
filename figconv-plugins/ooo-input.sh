@@ -15,7 +15,7 @@ function check_odg() {
   cmdavail unoconv || {
     echo "The unoconv utility is not installed."
     echo "Try to install the unoconv package and libreoffice or openoffice."
-    exit CHECK_FAILED
+    exit $CHECK_FAILED
   }
 
   { unoconv --show; } &> /dev/null
