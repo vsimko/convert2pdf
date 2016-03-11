@@ -8,10 +8,14 @@ A useful script for scientific writing that converts multiple formats to PDF.
 [![Build Status](https://travis-ci.org/vsimko/figconv.svg?branch=master)](https://travis-ci.org/vsimko/figconv)
 
 ## How to use
-- Assuming you are using LaTeX for writing your paper.
-- Keep all your images in a subfolder: `mkdir images`
-- Download figconv
-- Run the script whenever needed, only modified files will be regenerated
+``` sh
+# assuming you keep all your files in `images` directory 
+git clone -n --depth 1 https://github.com/vsimko/figconv.git images
+cd images
+git checkout HEAD figconv.sh
+git checkout HEAD figconv-plugins
+# now you can run `./figconv.sh` as needed
+```
 
 ## Supported output formats
 - PDF (default and also used for intermediate conversion to other formats)
@@ -36,11 +40,4 @@ A useful script for scientific writing that converts multiple formats to PDF.
   - global parameters `pdf.width` and `pdf.heigth`
 
 ## Dependencies
-- `pdfcrop`
-- `pdfseparate`
-- `resize`
-- `unoconv`
-- `inkscape`
-- `dia`
-- `Rscript`
-- `gs`
+- see `addons:apt:packages` in file [`.travis.yml`](.travis.yml)
