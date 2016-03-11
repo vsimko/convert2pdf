@@ -1,10 +1,13 @@
+# running checks from all plugins
 function system_check() {
 
-  # running checks from all plugins
-  get_all_extensions | while read EXT
+  for EXT in `get_all_extensions`
   do
     echo -n "checking $EXT ... "
-    check_$EXT
+    check_$EXT || {
+      echo "failed with return code $?"
+      exit 1
+    }
     echo "ok"
   done
 }
@@ -12,4 +15,3 @@ function system_check() {
 function cmdavail() {
   type "$1" &> /dev/null
 }
-

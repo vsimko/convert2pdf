@@ -15,13 +15,13 @@ function check_odg() {
   cmdavail unoconv || {
     echo "The unoconv utility is not installed."
     echo "Try to install the unoconv package and libreoffice or openoffice."
-    exit $CHECK_FAILED
+    return 1
   }
 
   { unoconv --show; } &> /dev/null
   [ "$?" -eq 0 ] || {
     echo "WARNING: LibreOffice/OpenOffice UNO bridge (unoconv) does not work properly!"
-    exit $CHECK_FAILED
+    return 1
   }
 }
 

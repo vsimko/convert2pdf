@@ -3,23 +3,23 @@
 add_input_ext dia
 
 function convert_dia_to_pdf() {
-	# old: dia -t pdf -e "$2" "$1"
+  # old: dia -t pdf -e "$2" "$1"
   # new: transforming DIA->SVG->PDF because the fonts were ugly
   TMP=`mktemp --suffix=.svg`
-	dia -t svg -e "$TMP" "$1"
-	convert_svg_to_pdf "$TMP" "$2"
+  dia -t svg -e "$TMP" "$1"
+  convert_svg_to_pdf "$TMP" "$2"
   rm "$TMP"
 }
 
 function check_dia() {
-	cmdavail dia || {
-		echo "DIA is not installed. You won't be able to convert DIA->PDF."
-		echo "Try to install DIA using: sudo apt-get install dia"
-		exit $CHECK_FAILED
-	}
+  cmdavail dia || {
+    echo "DIA is not installed. You won't be able to convert DIA->PDF."
+    echo "Try to install DIA using: sudo apt-get install dia"
+    return 1
+  }
 
   cmdavail convert_svg_to_pdf || {
     echo "DIA input plugin requires SVG input plugin"
-		exit $CHECK_FAILED
+    return 1
   }
 }

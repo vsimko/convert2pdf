@@ -14,7 +14,6 @@ function convert_pdf_to_png() {
 function check_png() {
   cmdavail gs || {
     echo "Ghostscript not installed (gs command)"
-		exit $CHECK_FAILED
+    return 1
   }
 }
-

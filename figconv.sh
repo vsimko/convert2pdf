@@ -3,7 +3,6 @@
 # Created by Viliam Simko viliam.simko@gmail.com
 BASEDIR=`dirname $0`
 PLUGIN_DIR="$BASEDIR/figconv-plugins"
-CHECK_FAILED=1
 TMPFILE=".pdfcrop"
 OUTPUT_EXT="pdf"
 
