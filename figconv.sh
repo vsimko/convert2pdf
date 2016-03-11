@@ -53,7 +53,7 @@ do
       # The original file and the created PDF files will have the same modification time
       synchronize_mtime "$INPUTNAME" "$OUTNAME"
     else
-      echo "Conversion failed."
+      echo "Conversion failed with return code $?"
     fi
 
   else

@@ -8,7 +8,7 @@ function convert_odg_to_pdf() {
 
   # TODO: comment this piece of code
   NEWPDFNAME="${1%.*}.pdf"
-  [ "$NEWPDFNAME" != "$2" ] && mv "$NEWPDFNAME" "$2"
+  [ "$NEWPDFNAME" == "$2" ] || mv "$NEWPDFNAME" "$2"
 }
 
 function check_odg() {
