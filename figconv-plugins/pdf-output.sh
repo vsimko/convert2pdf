@@ -48,7 +48,7 @@ function crop_pdf_file() {
   if [ "$NUMPAGES" -gt 1 ]
   then
     # There are 2 or more pages, we need to split the PDF
-    echo -n "  Splitting PDF containing $NUMPAGES pages into separate files ... "
+    echo -n "Splitting PDF containing $NUMPAGES pages into separate files ... "
     pdfseparate "$1" ${1%.pdf}%d.pdf
     echo "done"
 
@@ -57,14 +57,14 @@ function crop_pdf_file() {
     LIST="${1%.pdf}?*.pdf"
   else
     # There is only 1 page, we are going to crop the original PDF
-    echo "  This PDF contains only a single page - splitting not needed"
+    echo "This PDF contains only a single page - splitting not needed"
     LIST="$1"
   fi
 
   # now cropping PDF files from the given list
   for FILENAME in $LIST
   do
-    echo -n "    Cropping PDF: $FILENAME ... "
+    echo -n "Cropping PDF: $FILENAME ... "
     pdfcrop "$FILENAME" "$TMPFILE" &> /dev/null
 
     # removes the warning "multiple pdfs with page group included in a single page"
