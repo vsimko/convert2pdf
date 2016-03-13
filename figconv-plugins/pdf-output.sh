@@ -7,9 +7,7 @@ add_output_ext pdf
 
 function convert_pdf_to_pdf() {
   # copy only if the files differ
-  [ "$1" -ef "$2" ] || {
-    cp "$1" "$2"
-  }
+  [ "$1" -ef "$2" ] || cp "$1" "$2"
 }
 
 function check_pdf() {
@@ -45,8 +43,7 @@ function crop_pdf_file() {
   # How many pages are inside the PDF file
   NUMPAGES=$(pdfinfo "$1" | grep ^Pages: | sed 's/[^0-9]//g')
 
-  if [ "$NUMPAGES" -gt 1 ]
-  then
+  if [ "$NUMPAGES" -gt 1 ]; then
     # There are 2 or more pages, we need to split the PDF
     echo -n "Splitting PDF containing $NUMPAGES pages into separate files ... "
     pdfseparate "$1" ${1%.pdf}%d.pdf
@@ -62,8 +59,7 @@ function crop_pdf_file() {
   fi
 
   # now cropping PDF files from the given list
-  for FILENAME in $LIST
-  do
+  for FILENAME in $LIST; do
     echo -n "Cropping PDF: $FILENAME ... "
     pdfcrop "$FILENAME" "$TMPFILE" &> /dev/null
 

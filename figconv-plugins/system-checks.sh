@@ -1,13 +1,12 @@
 # running checks from all plugins
 function system_check() {
 
-  for EXT in `get_all_extensions`
-  do
+  for EXT in `get_all_extensions`; do
     echo -n "checking $EXT ... "
-    check_$EXT || {
+    if ! check_$EXT; then
       echo "failed with return code $?"
       exit 1
-    }
+    fi
     echo "ok"
   done
 }

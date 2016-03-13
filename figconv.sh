@@ -17,8 +17,7 @@ function add_output_ext() {
 }
 
 # Load all plugins
-for PLUGIN in "$PLUGIN_DIR"/*.sh
-do
+for PLUGIN in "$PLUGIN_DIR"/*.sh; do
   echo -n "Loading $PLUGIN ... "
   . "$PLUGIN"
   echo "ok"
@@ -33,20 +32,18 @@ system_check
 #echo ALL EXTENSIONS: `get_all_extensions`
 echo "Selected output format is: $OUTPUT_EXT"
 
-find_all_input_files | while read INPUTNAME
-do
+find_all_input_files | while read INPUTNAME; do
   BASENAME="${INPUTNAME%.*}"
   SUFFIX="${INPUTNAME##*.}"
   PDFNAME="$BASENAME".pdf
   OUTNAME="$BASENAME"."$OUTPUT_EXT"
 
   write_separator
-  if [ "$INPUTNAME" -nt "$OUTNAME" -o "$INPUTNAME" -ot "$OUTNAME" ] # modification time differs
-  then
+  if [ "$INPUTNAME" -nt "$OUTNAME" -o "$INPUTNAME" -ot "$OUTNAME" ]; then
+    # modification time differs
 
     # convert input format to output format through PDF format
-    if convert_${SUFFIX}_to_pdf "$INPUTNAME" "$PDFNAME"
-    then
+    if convert_${SUFFIX}_to_pdf "$INPUTNAME" "$PDFNAME"; then
       crop_pdf_file "$PDFNAME"
       convert_pdf_to_${OUTPUT_EXT} "$PDFNAME" "$OUTNAME"
 
