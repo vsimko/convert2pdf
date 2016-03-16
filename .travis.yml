@@ -11,6 +11,9 @@ addons:
     - poppler-utils
     - texlive-extra-utils
 
+before_script:
+  - pip install --user codecov && codecov
+
 script:
     - make test
     - INSTALL_PATH=build make install
