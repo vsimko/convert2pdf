@@ -1,21 +1,26 @@
 language: bash
 
 addons:
-  apt:
-    packages:
-    - dia
-    - inkscape
-    - r-base-core
-    - unoconv
-    - libreoffice
-    - poppler-utils
-    - texlive-extra-utils
+    apt:
+        packages:
+        - dia
+        - inkscape
+        - r-base-core
+        - unoconv
+        - libreoffice
+        - poppler-utils
+        - texlive-extra-utils
+
+#        # required by kcov
+#        - elfutils
+#        - libdw-dev
+#        - libelf-dev
+# after_success:
+#   - bash <(curl -s https://codecov.io/bash)
 
 script:
-    - make test
-    - INSTALL_PATH=build make install
-    - INSTALL_PATH=build make uninstall
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+    - make                              # just show the message
+    - make test                         # run tests
+    - INSTALL_PATH=build make install   # try to install without sudo
+    - INSTALL_PATH=build make uninstall # try to uninstall without sudo
 
