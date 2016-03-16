@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd `dirname $0`
+FIGCONV="../bin/figconv"
 
 cleanup() {
     echo "CLEANUP: Removing files generated in tests"
@@ -10,7 +11,7 @@ cleanup() {
 trap cleanup EXIT
 
 echo "Generating PDFs from test files ... "
-../figconv.sh
+$FIGCONV
 
 echo "Checking whether all PDFs have been generated as expected ... "
 for I in $(seq 1 4)
@@ -23,7 +24,7 @@ do
 done
 
 echo "Generating PNGs from test files"
-../figconv.sh --png
+$FIGCONV --png
 
 echo "Checking whether all PNGs have been generated as expected ... "
 for I in $(seq 1 4)

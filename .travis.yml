@@ -12,5 +12,6 @@ addons:
     - texlive-extra-utils
 
 script:
-    - bash tests/run-tests.sh
-
+    - make test
+    - INSTALL_PATH=build make install
+    - INSTALL_PATH=build make uninstall
