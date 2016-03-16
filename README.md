@@ -13,6 +13,7 @@ A useful script for scientific writing that converts multiple formats to PDF.
 By default, the tool will be installed to `/usr/local`
 ``` sh
 git clone --depth 1 https://github.com/vsimko/figconv.git
+cd figconv
 sudo make install
 ```
 Uninstallation also works:
