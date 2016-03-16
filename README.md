@@ -9,14 +9,28 @@ A useful script for scientific writing that converts multiple formats to PDF.
 [![Issue Stats](http://issuestats.com/github/vsimko/figconv/badge/pr)](http://issuestats.com/github/vsimko/figconv)
 [![Issue Stats](http://issuestats.com/github/vsimko/figconv/badge/issue)](http://issuestats.com/github/vsimko/figconv)
 
+## How to install
+By default, the tool will be installed to `/usr/local`
+``` sh
+git clone --depth 1 https://github.com/vsimko/figconv.git
+sudo make install
+```
+Uninstallation also works:
+``` sh
+sudo make uninstall
+```
+
+You can install/uninstall it somewhere else as follows:
+``` sh
+INSTALL_PATH=/path/to/other/dir make install
+INSTALL_PATH=/path/to/other/dir make uninstall
+```
+
 ## How to use
 ``` sh
-# assuming you keep all your files in `images` directory 
-git clone -n --depth 1 https://github.com/vsimko/figconv.git images
-cd images
-git checkout HEAD figconv.sh
-git checkout HEAD figconv-plugins
-# now you can run `./figconv.sh` as needed
+cd /path/to/my/latex/paper/images
+figconv       # generates PDFs
+figconv --png # generates PDFs and PNGs
 ```
 
 ## Supported output formats
