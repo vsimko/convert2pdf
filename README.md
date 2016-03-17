@@ -79,6 +79,7 @@ dpkg -i vagrant_1.8.1_x86_64.deb
 
 # the VM will live in this directory
 mkdir figconv-vm
+cd figconv-vm
 
 # now initialize Ubuntu 12.04 LTS (precise)
 # same as Travis-CI uses for automated builds
@@ -89,9 +90,19 @@ vagrant ssh
 
 Now, you should be logged into the VM running Ubuntu.
 ```sh
-# git and make not installed by default
+# install git and make first
 sudo apt-get install git
 sudo apt-get install make
+
+# install mandatory dependencies for figconv
+sudo apt-get install poppler-utils
+sudo apt-get install texlive-extra-utils
+
+# install optional dependencies for figconv
+sudo apt-get install dia                  # diagrams made in dia
+sudo apt-get install inkscape             # SVG
+sudo apt-get install unoconv libreoffice  # Open/LibreOffice formats
+sudo apt-get install r-base-core          # when using R
 
 # now install figconv
 git clone --depth 1 https://github.com/vsimko/figconv.git
