@@ -11,24 +11,24 @@ A useful script for scientific writing that converts multiple formats to PDF.
 
 ## How to install
 By default, the tool will be installed to `/usr/local`
-``` sh
+```sh
 git clone --depth 1 https://github.com/vsimko/figconv.git
 cd figconv
 sudo make install
 ```
 Uninstallation also works:
-``` sh
+```sh
 sudo make uninstall
 ```
 
 You can install/uninstall it somewhere else as follows:
-``` sh
+```sh
 INSTALL_PATH=/path/to/other/dir make install
 INSTALL_PATH=/path/to/other/dir make uninstall
 ```
 
 ## How to use
-``` sh
+```sh
 cd /path/to/my/latex/paper/images
 figconv       # generates PDFs
 figconv --png # generates PDFs and PNGs
@@ -66,3 +66,40 @@ figconv --png # generates PDFs and PNGs
 
 ## Other links
 - https://www.openhub.net/p/figconv
+
+## Testing in a virtual machine
+Using [vagrant](https://www.vagrantup.com/) + [virtualbox](https://www.virtualbox.org/)
+```sh
+# we need some virtualization backend, here we use virtualbox
+sudo apt-get install virtualbox
+
+# install latest vagrant (1.8+ older versions may not work properly)
+https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+dpkg -i vagrant_1.8.1_x86_64.deb
+
+# the VM will live in this directory
+mkdir figconv-vm
+
+# now initialize Ubuntu 12.04 LTS (precise)
+# same as Travis-CI uses for automated builds
+vagrant init hashicorp/precise64
+vagrant up
+vagrant ssh
+```
+
+Now, you should be logged into the VM running Ubuntu.
+```sh
+# git and make not installed by default
+sudo apt-get install git
+sudo apt-get install make
+
+# now install figconv
+git clone --depth 1 https://github.com/vsimko/figconv.git
+cd figconv
+sudo make install
+```
+
+There are some sample fiels in `tests/` directory can be converted.
+```sh
+figconv
+```
