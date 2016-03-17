@@ -110,7 +110,16 @@ cd figconv
 sudo make install
 ```
 
-There are some sample fiels in `tests/` directory can be converted.
+Sample files in `tests/` can now be converted.
 ```sh
 figconv
+
+# this lists all generated PDF files
+ls tests/*.pdf
+
+# copy the generated files from guest vm to host system
+cp -r tests /vagrant
+exit # now exit the guest vm
+
+ls -l # list the files in your host system
 ```
