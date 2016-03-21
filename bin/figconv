@@ -6,15 +6,29 @@ PLUGIN_DIR="$BASEDIR/../share/figconv-plugins"
 TMPFILE=".pdfcrop"
 OUTPUT_EXT="pdf"
 
-function add_input_ext() {
+CODE_OK=0
+CODE_WARNING=1
+CODE_ERROR=2
+
+# Convenient way of reporting errors to STDERR
+echoerr() { echo $@ > /dev/stderr; }
+
+# Used by a plugin that wants to register itself as an "input" plugin.
+# Multiple extensions can be separated by whitespaces.
+add_input_ext() {
   EXT="$@"
   SUPPORTED_INPUT_EXT=`echo ${SUPPORTED_INPUT_EXT} $EXT | tr " " "\n" | sort -u`
 }
 
-function add_output_ext() {
+# Used by a plugin that wants to register itself as an "output" plugin.
+# Multiple extensions can be separated by whitespaces.
+add_output_ext() {
   EXT="$@"
   SUPPORTED_OUTPUT_EXT=`echo ${SUPPORTED_OUTPUT_EXT} $EXT | tr " " "\n" | sort -u`
 }
+
+# TODO: this allows for easier plugin-based implementation later
+# typeset -F | sed 's/declare -f //'
 
 # Load all plugins
 for PLUGIN in "$PLUGIN_DIR"/*.sh; do
@@ -50,7 +64,7 @@ find_all_input_files | while read INPUTNAME; do
       # The original file and the created PDF files will have the same modification time
       synchronize_mtime "$INPUTNAME" "$OUTNAME"
     else
-      echo "Conversion failed with return code $?"
+      echoerr "Conversion failed with return code $?"
     fi
 
   else

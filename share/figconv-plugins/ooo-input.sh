@@ -12,17 +12,19 @@ function convert_odg_to_pdf() {
 }
 
 function check_odg() {
-  cmdavail unoconv || {
+  # is unoconv installed ?
+  if cmdavail unoconv; then
+    # sanity check for unoconv
+    { unoconv --show; } &> /dev/null
+    if [ ! "$?" -eq 0 ]; then
+      echo "WARNING: LibreOffice/OpenOffice UNO bridge (unoconv) does not work properly!"
+      return $CODE_ERROR
+    fi
+  else
     echo "The unoconv utility is not installed."
-    echo "Try to install the unoconv package and libreoffice or openoffice."
-    return 1
-  }
-
-  { unoconv --show; } &> /dev/null
-  [ "$?" -eq 0 ] || {
-    echo "WARNING: LibreOffice/OpenOffice UNO bridge (unoconv) does not work properly!"
-    return 1
-  }
+    echo "Try to install the unoconv package and open/libreoffice."
+    return $CODE_WARNING
+  fi
 }
 
 # just redirects

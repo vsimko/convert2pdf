@@ -5,5 +5,5 @@ pdf.height <- 7
 # if you plot something within this function
 # it will be rendered to the PDF
 pdf.plot <- function() {
-	plot(1:10)
+    plot(1:10)
 }

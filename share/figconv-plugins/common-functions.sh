@@ -1,4 +1,4 @@
-
+# store the width of our terminal
 NCOL=`stty size --file=/dev/stdin | cut -d" " -f2`
 
 function write_separator() {

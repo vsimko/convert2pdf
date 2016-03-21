@@ -17,6 +17,6 @@ function convert_R_to_pdf() {
 function check_R() {
   cmdavail Rscript || {
     echo "R not installed"
-    return 1
+    return $CODE_WARNING
   }
 }

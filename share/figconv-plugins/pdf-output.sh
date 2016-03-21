@@ -14,7 +14,7 @@ function check_pdf() {
   cmdavail pdfinfo || {
     echo "The pdfinfo utility is not installed."
     echo "Try to install the poppler-utils package."
-    return 1
+    return $CODE_ERROR
   }
 
   cmdavail pdfseparate || {
@@ -22,7 +22,7 @@ function check_pdf() {
     echo "It is needed for splitting PDF files containing multiple pages."
     echo "However, if all your files contain just a single page, this script is not needed."
     echo "Try to install the poppler-utils package."
-    return 1
+    return $CODE_ERROR
 
   }
 
@@ -30,7 +30,7 @@ function check_pdf() {
     echo "The pdfcrop utility is not installed."
     echo "This should be a small python script."
     echo "Try to install the texlive-extra-utils package."
-    return 1
+    return $CODE_ERROR
   }
 
 }

@@ -15,11 +15,11 @@ function check_dia() {
   cmdavail dia || {
     echo "DIA is not installed. You won't be able to convert DIA->PDF."
     echo "Try to install DIA using: sudo apt-get install dia"
-    return 1
+    return $CODE_WARNING
   }
 
   cmdavail convert_svg_to_pdf || {
     echo "DIA input plugin requires SVG input plugin"
-    return 1
+    return $CODE_WARNING
   }
 }

@@ -1,4 +1,4 @@
-# Evertything related to command line arguments parsing
+# Everything related to command line arguments parsing
 # The application can be used without this plugin
 
 while [ $# -gt 0 ]

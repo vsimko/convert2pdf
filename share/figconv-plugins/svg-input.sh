@@ -11,6 +11,6 @@ function check_svg() {
   cmdavail inkscape || {
     echo "Inkscape is not installed. It is required for SVG->PDF conversion."
     echo "Try to install inkscape, e.g. sudo apt-get install inkscape."
-    return 1
+    return $CODE_WARNING
   }
 }
