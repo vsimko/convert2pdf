@@ -21,6 +21,9 @@ test:
 
 install: $(BIN_DIR)/figconv $(SHARE_DIR)/figconv-plugins
 
+clean:
+	rm tests/*.pdf
+
 uninstall:
 	rm $(BIN_DIR)/figconv
 	rm -r $(SHARE_DIR)/figconv-plugins
