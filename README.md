@@ -6,8 +6,6 @@ A useful script for scientific writing that converts multiple formats to PDF.
 - tested on **Linux** (Mint, Ubuntu, Debian, CentOS)
 
 [![Build Status](https://travis-ci.org/vsimko/figconv.svg?branch=master)](https://travis-ci.org/vsimko/figconv)
-[![Issue Stats](http://issuestats.com/github/vsimko/figconv/badge/pr)](http://issuestats.com/github/vsimko/figconv)
-[![Issue Stats](http://issuestats.com/github/vsimko/figconv/badge/issue)](http://issuestats.com/github/vsimko/figconv)
 
 ## How to install
 By default, the tool will be installed to `/usr/local`
