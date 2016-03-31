@@ -11,7 +11,7 @@ CODE_WARNING=1
 CODE_ERROR=2
 
 # Convenient way of reporting errors to STDERR
-echoerr() { echo $@ > /dev/stderr; }
+echoerr() { echo ERROR: $@ > /dev/stderr; }
 
 # Used by a plugin that wants to register itself as an "input" plugin.
 # Multiple extensions can be separated by whitespaces.
