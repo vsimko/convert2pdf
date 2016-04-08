@@ -2,8 +2,9 @@
 function system_check() {
 
   # first check if we are in the right directory
-  FINDCMD="find . -maxdepth 1 -iname '' "$(get_input_extensions | sed 's/^/-or -iname *./')
-  if [ $(`echo $FINDCMD` | wc -l) -lt 1 ]; then
+  FINDCMD="find . -maxdepth 1 -false "$(get_input_extensions | sed -e 's/^/-or -iname "*./' -e 's/$/"/' | tr '\n' ' ')
+
+  if [ $(eval "$FINDCMD" | wc -l) -lt 1 ]; then
     echoerr "This directory does not contain input images"
     exit 1
   fi

@@ -24,6 +24,6 @@ function get_output_extensions() {
 }
 
 function find_all_input_files() {
-  FINDCMD="find . -iname '' "$(get_input_extensions | sed 's/^/-or -iname *./')
-  `echo $FINDCMD` | sort
+  FINDCMD="find . -false "$(get_input_extensions | sed -e 's/^/-or -iname "*./' -e 's/$/"/' | tr '\n' ' ')
+  eval "$FINDCMD" | sort
 }
