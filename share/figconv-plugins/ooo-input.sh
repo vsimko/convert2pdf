@@ -17,13 +17,24 @@ function check_odg() {
     # sanity check for unoconv
     { unoconv --show; } &> /dev/null
     if [ ! "$?" -eq 0 ]; then
-      echo "WARNING: LibreOffice/OpenOffice UNO bridge (unoconv) does not work properly!"
+      echoerr "LibreOffice/OpenOffice UNO bridge (unoconv) does not work properly!"
       return $CODE_ERROR
     fi
   else
     echo "The unoconv utility is not installed."
     echo "Try to install the unoconv package and open/libreoffice."
     return $CODE_WARNING
+  fi
+
+  if pgrep soffice.bin; then
+    echoerr "An instance of LibreOffice or OpenOffice is running."
+    echoerr "This may cause unoconv tool to fail"
+    read -p "Should we kill the process now [yes/no] ? (default=no): " ANS
+    if [ "$ANS" == "yes" ]; then
+      killall soffice.bin
+    else
+      return $CODE_ERROR
+    fi
   fi
 }
 
