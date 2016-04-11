@@ -26,6 +26,9 @@ function check_odg() {
     return $CODE_WARNING
   fi
 
+  # Fixed issue #24 Unoconv fails when libreoffice config is missing
+  soffice --headless /dev/null
+
   if pgrep soffice.bin; then
     echoerr "An instance of LibreOffice or OpenOffice is running."
     echoerr "This may cause unoconv tool to fail"
