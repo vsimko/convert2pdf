@@ -19,14 +19,22 @@ info:
 test:
 	tests/run-tests.sh
 
-install: $(BIN_DIR)/figconv $(SHARE_DIR)/figconv-plugins
+# this target actually replaces the old version (reinstall)
+install: uninstall install-only
+
+# this target does not replace the old version
+install-only: $(BIN_DIR)/figconv $(SHARE_DIR)/figconv-plugins
+	@git log -n1 --date=short --format='commit %h on %ad' > $(SHARE_DIR)/figconv.version
+	@echo -n "Installed figconv to your install path $(INSTALL_PATH) version: "
+	@cat $(SHARE_DIR)/figconv.version
 
 clean:
 	rm tests/*.pdf
 
 uninstall:
-	rm $(BIN_DIR)/figconv
-	rm -r $(SHARE_DIR)/figconv-plugins
+	@if [ -f $(SHARE_DIR)/figconv.version ]; then echo -n "Trying to uninstall version: "; cat $(SHARE_DIR)/figconv.version; rm $(SHARE_DIR)/figconv.version; fi
+	@if [ -f $(BIN_DIR)/figconv ]; then rm $(BIN_DIR)/figconv; echo "figconv uninstalled"; fi
+	@if [ -d $(SHARE_DIR)/figconv-plugins ]; then rm -r $(SHARE_DIR)/figconv-plugins; echo "figconv-plugins uninstalled"; fi
 
 $(SHARE_DIR):
 	mkdir -p $(SHARE_DIR)
