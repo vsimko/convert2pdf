@@ -26,8 +26,11 @@ function check_odg() {
     return $CODE_WARNING
   fi
 
-  # Fixed issue #24 Unoconv fails when libreoffice config is missing
-  soffice --headless /dev/null
+  # Fixed issue #25: soffice is called multiple times during init
+  if [ ! -d ~/.config/libreoffice ]; then
+    # Fixed issue #24: unoconv fails when libreoffice config is missing
+    soffice --headless /dev/null
+  fi
 
   if pgrep soffice.bin; then
     echoerr "An instance of LibreOffice or OpenOffice is running."
