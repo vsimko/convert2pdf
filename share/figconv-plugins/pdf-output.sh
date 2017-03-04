@@ -35,7 +35,7 @@ function check_pdf() {
 
 }
 
-# Removes redundant borders from PDF files.
+# Removes redundant borders from PDF files using pdfcrop.
 # Parameters:
 #   $1 = PDF filename
 function crop_pdf_file() {
@@ -46,7 +46,7 @@ function crop_pdf_file() {
   if [ "$NUMPAGES" -gt 1 ]; then
     # There are 2 or more pages, we need to split the PDF
     echo -n "Splitting PDF containing $NUMPAGES pages into separate files ... "
-    pdfseparate "$1" ${1%.pdf}%d.pdf
+    pdfseparate "$1" "${1%.pdf}%d.pdf"
     echo "done"
 
     # The original multi-page PDF file will not be cropped
@@ -59,7 +59,7 @@ function crop_pdf_file() {
   fi
 
   # now cropping PDF files from the given list
-  for FILENAME in $LIST; do
+  find "$(dirname "$LIST")" -name "$(basename "$LIST")" | while read FILENAME; do
     echo -n "Cropping PDF: $FILENAME ... "
     pdfcrop "$FILENAME" "$TMPFILE" &> /dev/null
 
