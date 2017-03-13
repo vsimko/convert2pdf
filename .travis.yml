@@ -23,4 +23,4 @@ script:
     - make test                         # run tests
     - INSTALL_PATH=build make install   # try to install without sudo
     - INSTALL_PATH=build make uninstall # try to uninstall without sudo
-
+    - make deb                          # build debian package and check with lintian

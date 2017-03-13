@@ -3,6 +3,8 @@ BIN_DIR=$(INSTALL_PATH)/bin
 SHARE_DIR=$(INSTALL_PATH)/share
 KCOV_DIR=/tmp/kcov
 KCOV_BIN=$(KCOV_DIR)/src/kcov
+DEB_PKG=deb/figconv_4.2
+DEB_PKG_DOC=$(DEB_PKG)/usr/share/doc/figconv
 
 info:
 	@echo ======================================
@@ -30,6 +32,22 @@ install-only: $(BIN_DIR)/figconv $(SHARE_DIR)/figconv-plugins
 
 clean:
 	rm tests/*.pdf
+
+deb-clean:
+	rm -r deb/
+
+deb:
+	mkdir -p $(DEB_PKG)/DEBIAN
+	cp deb-control $(DEB_PKG)/DEBIAN/control
+	mkdir -p $(DEB_PKG)/usr/
+	cp -r bin/ $(DEB_PKG)/usr/
+	cp -r share/ $(DEB_PKG)/usr/
+	mkdir -p $(DEB_PKG_DOC)
+	cp deb-changelog $(DEB_PKG_DOC)/changelog
+	gzip -n -9 $(DEB_PKG_DOC)/changelog
+	cp LICENSE $(DEB_PKG_DOC)/copyright
+	fakeroot dpkg-deb --build $(DEB_PKG)
+	lintian $(DEB_PKG).deb
 
 uninstall:
 	@if [ -f $(SHARE_DIR)/figconv.version ]; then echo -n "Trying to uninstall version: "; cat $(SHARE_DIR)/figconv.version; rm $(SHARE_DIR)/figconv.version; fi
