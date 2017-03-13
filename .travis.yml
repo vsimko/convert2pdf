@@ -10,6 +10,7 @@ addons:
         - libreoffice
         - poppler-utils
         - texlive-extra-utils
+        - lintian
 
 #        # required by kcov
 #        - elfutils
