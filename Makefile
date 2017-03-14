@@ -12,6 +12,7 @@ info:
 	@echo You can use the following:
 	@echo ======================================
 	@echo - make test
+	@echo - make deb
 	@echo - sudo make install
 	@echo - sudo make uninstall
 	@echo - INSTALL_PATH=mybuild make install
