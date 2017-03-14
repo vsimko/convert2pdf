@@ -3,7 +3,8 @@ Version: 4.2
 Section: science
 Priority: optional
 Architecture: all
-Depends: poppler-utils (>= 0.40), texlive-extra-utils (>= 2015.20160320), dia (>= 0.97.3), inkscape (>= 0.90), unoconv (>= 0.7), libreoffice-common (>= 1:5.1.2), r-base-core (>= 3.3.3)
+Depends: poppler-utils (>= 0.40), texlive-extra-utils (>= 2015.20160320)
+Suggests: dia (>= 0.97.3), inkscape (>= 0.90), unoconv (>= 0.7), libreoffice-common (>= 1:5.1.2), r-base-core (>= 3.3.3)
 Maintainer: Viliam Simko <viliam.simko@gmail.com>
 Description: Figure Converter
  A useful script for scientific writing that converts
