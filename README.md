@@ -7,8 +7,14 @@ A useful script for scientific writing that converts multiple formats to PDF.
 
 [![Build Status](https://travis-ci.org/vsimko/figconv.svg?branch=master)](https://travis-ci.org/vsimko/figconv)
 
-## How to install - Debian derivatives
+## How to use
+```sh
+cd /path/to/my/latex/paper/images
+figconv       # generates PDFs
+figconv --png # generates PDFs and PNGs
+```
 
+## How to install - Debian derivatives
 On Debian, Ubuntu and Linux Mint, you can install the [latest release as a `deb` package](https://github.com/vsimko/figconv/releases/latest). This has some optional dependencies.
 After downloading the file `figconv_<VERSION>.deb`, install it using the following command:
 ```sh
@@ -16,7 +22,6 @@ sudo dpkg -i figconv_<VERSION>.deb
 ```
 
 ## How to install - Other Unix distros
-
 You can install figconv directly from github into your `/usr/local` directory.
 It is generally not recommended to run `sudo make ...` on stuff downloaded from the Internet.
 **So you have been warned!**
@@ -36,19 +41,11 @@ INSTALL_PATH=/path/to/other/dir make install
 INSTALL_PATH=/path/to/other/dir make uninstall
 ```
 
-## How to use
-```sh
-cd /path/to/my/latex/paper/images
-figconv       # generates PDFs
-figconv --png # generates PDFs and PNGs
-```
-
 ## Supported output formats
 - PDF (default and also used for intermediate conversion to other formats)
 - PNG (requires Ghostscript `gs`)
 
 ## Supported input formats
-
 - [OpenOffice]() / [LibreOffice](https://www.libreoffice.org/) formats:
   - requires `unoconv` utility
   - ODT (Writer): Every page exported as a single PDF
