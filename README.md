@@ -7,8 +7,19 @@ A useful script for scientific writing that converts multiple formats to PDF.
 
 [![Build Status](https://travis-ci.org/vsimko/figconv.svg?branch=master)](https://travis-ci.org/vsimko/figconv)
 
-## How to install
-By default, the tool will be installed to `/usr/local`
+## How to install - Debian derivatives
+
+On Debian, Ubuntu and Linux Mint, you can install the [latest release as a `deb` package](https://github.com/vsimko/figconv/releases/latest). This has some optional dependencies.
+After downloading the file `figconv_<VERSION>.deb`, install it using the following command:
+```sh
+sudo dpkg -i figconv_<VERSION>.deb
+```
+
+## How to install - Other Unix distros
+
+You can install figconv directly from github into your `/usr/local` directory.
+It is generally not recommended to run `sudo make ...` on stuff downloaded from the Internet.
+**So you have been warned!**
 ```sh
 git clone --depth 1 https://github.com/vsimko/figconv.git
 cd figconv
@@ -54,8 +65,8 @@ figconv --png # generates PDFs and PNGs
   - single R file per diagram
   - global parameters `pdf.width` and `pdf.heigth`
 
-## Dependencies
-- see `addons:apt:packages` in file [`.travis.yml`](.travis.yml)
+## Runtime Dependencies
+- see [`deb-control`](deb-control) file
 
 ## How to contribute
 - if you have a bug report, feature requst or just a question, use the issue tracker
@@ -64,60 +75,3 @@ figconv --png # generates PDFs and PNGs
 
 ## Other links
 - https://www.openhub.net/p/figconv
-
-## Testing in a virtual machine
-Using [vagrant](https://www.vagrantup.com/) + [virtualbox](https://www.virtualbox.org/)
-```sh
-# we need some virtualization backend, here we use virtualbox
-sudo apt-get install virtualbox
-
-# install latest vagrant (1.8+ older versions may not work properly)
-https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
-dpkg -i vagrant_1.8.1_x86_64.deb
-
-# the VM will live in this directory
-mkdir figconv-vm
-cd figconv-vm
-
-# now initialize Ubuntu 12.04 LTS (precise)
-# same as Travis-CI uses for automated builds
-vagrant init hashicorp/precise64
-vagrant up
-vagrant ssh
-```
-
-Now, you should be logged into the VM running Ubuntu.
-```sh
-# install git and make first
-sudo apt-get install git
-sudo apt-get install make
-
-# install mandatory dependencies for figconv
-sudo apt-get install poppler-utils
-sudo apt-get install texlive-extra-utils
-
-# install optional dependencies for figconv
-sudo apt-get install dia                  # diagrams made in dia
-sudo apt-get install inkscape             # SVG
-sudo apt-get install unoconv libreoffice  # Open/LibreOffice formats
-sudo apt-get install r-base-core          # when using R
-
-# now install figconv
-git clone --depth 1 https://github.com/vsimko/figconv.git
-cd figconv
-sudo make install
-```
-
-Sample files in `tests/` can now be converted.
-```sh
-figconv
-
-# this lists all generated PDF files
-ls tests/*.pdf
-
-# copy the generated files from guest vm to host system
-cp -r tests /vagrant
-exit # now exit the guest vm
-
-ls -l # list the files in your host system
-```
