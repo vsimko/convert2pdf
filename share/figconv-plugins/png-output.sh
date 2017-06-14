@@ -13,7 +13,7 @@ function convert_pdf_to_png() {
 
 function check_png() {
   cmdavail gs || {
-    echo "Ghostscript not installed (gs command)" > /dev/stderr
+    echoerr "Ghostscript not installed (gs command)"
     return $CODE_WARNING
   }
 }
