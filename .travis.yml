@@ -12,6 +12,8 @@ addons:
         - texlive-extra-utils
         - lintian
         - ghostscript
+        - fakeroot
+
 
 #        # required by kcov
 #        - elfutils
