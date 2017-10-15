@@ -11,6 +11,7 @@ addons:
         - poppler-utils
         - texlive-extra-utils
         - lintian
+        - ghostscript
 
 #        # required by kcov
 #        - elfutils
