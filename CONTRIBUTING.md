@@ -11,4 +11,4 @@ contribution at a time by users just like you.
 - pull requests must refer to some issue in the issue tracker, so add issues first
 
 # Notes
-- version number is located in `deb-control` file which is also used by `make deb`
+- version number is located in [`deb-control`](deb-control) file which is also used by `make deb`
