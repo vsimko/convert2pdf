@@ -3,21 +3,25 @@ BIN_DIR=$(INSTALL_PATH)/bin
 SHARE_DIR=$(INSTALL_PATH)/share
 KCOV_DIR=/tmp/kcov
 KCOV_BIN=$(KCOV_DIR)/src/kcov
-DEB_PKG=deb/figconv_4.2
+VERSION=$(shell grep Version: deb-control | sed 's/.*: //')
+DEB_PKG=deb/figconv_$(VERSION)
 DEB_PKG_DOC=$(DEB_PKG)/usr/share/doc/figconv
 
 info:
-	@echo ======================================
-	@echo This is a Makefile for figconv tool.
+	@echo ==========================================
+	@echo This is a Makefile for figconv tool v$(VERSION)
 	@echo You can use the following:
-	@echo ======================================
+	@echo ==========================================
 	@echo - make test
+	@echo - make clean
 	@echo - make deb
+	@echo - make deb-clean
 	@echo - sudo make install
 	@echo - sudo make uninstall
 	@echo - INSTALL_PATH=mybuild make install
 	@echo - INSTALL_PATH=mybuild make uninstall
-	@echo ======================================
+	@echo - make release ... not implemented yet
+	@echo ==========================================
 
 test:
 	tests/run-tests.sh
@@ -76,3 +80,6 @@ $(KCOV_BIN): $(KCOV_DIR)
 
 $(KCOV_DIR):
 	git clone --depth=1 https://github.com/SimonKagstrom/kcov $(KCOV_DIR)
+
+release: deb
+	@echo TODO: Releasing new version $(VERSION)
