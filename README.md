@@ -66,10 +66,7 @@ INSTALL_PATH=/path/to/other/dir make uninstall
 - see [`deb-control`](deb-control) file
 
 ## How to contribute
-- if you have a bug report, feature requst or just a question, use the issue tracker
-- contribute code through pull requests
-- pull requests must refer to some issue in the issue tracker, so add issues first
-- version number is located in `deb-control` file which is also used by `make deb`
+- see [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ## Other links
 - https://www.openhub.net/p/figconv
