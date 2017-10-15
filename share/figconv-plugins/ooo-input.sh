@@ -36,7 +36,7 @@ function check_odg() {
     echoerr "An instance of LibreOffice or OpenOffice is running."
     echoerr "This may cause unoconv tool to fail"
     read -p "Should we kill the process now [yes/no] ? (default=no): " ANS
-    if [ "$ANS" == "yes" ]; then
+    if [ "$ANS" == "yes" -o "$ANS" == "y" ]; then
       killall soffice.bin
     else
       return $CODE_ERROR
